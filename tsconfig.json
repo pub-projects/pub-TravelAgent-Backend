@@ -1,0 +1,36 @@
+{
+  "exclude": ["./coverage", "./dist", "__test__/**/*", "jest.config.ts", "./dist/**/*"],
+  "include": ["./src/**/*"],
+  "ts-node": {
+    "transpileOnly": true,
+    "files": true
+  },
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+
+    /* Projects */
+
+    /* Language and Environment */
+    "target": "es2016",
+
+    /* Modules */
+    "module": "commonjs",
+    "rootDir": "./src",
+    "moduleResolution": "node",
+
+    /* JavaScript Support */
+    "checkJs": true,
+
+    /* Emit */
+    "outDir": "./dist",
+
+    /* Interop Constraints */
+    "esModuleInterop": true,
+    /*"forceConsistentCasingInFileNames": true,*/
+
+    /* Type Checking */
+    "strict": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true
+  }
+}

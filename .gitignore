@@ -2,10 +2,12 @@
 /node_modules
 /.pnp
 .pnp.js
+.env
+.env copy
 
 # testing
 /coverage
-__tests__/config/
+__test__/config/
 
 # production
 /build
