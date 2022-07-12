@@ -1,5 +1,6 @@
 {
-  "exclude": ["./coverage", "./dist", "__test__", "jest.config.ts"],
+  "exclude": ["./coverage", "./dist", "__test__/**/*", "jest.config.ts", "./dist/**/*"],
+  "include": ["./src/**/*"],
   "ts-node": {
     "transpileOnly": true,
     "files": true
@@ -25,7 +26,7 @@
 
     /* Interop Constraints */
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    /*"forceConsistentCasingInFileNames": true,*/
 
     /* Type Checking */
     "strict": true,

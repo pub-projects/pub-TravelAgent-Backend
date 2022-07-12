@@ -1,8 +1,10 @@
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
-module.exports = async () => {
-    return {
-        preset: 'ts-jest',
-        testEnvironment: 'node',
-        verbose: true,
-    };
+import type { Config } from '@jest/types';
+
+module.exports = async (): Promise<Config.InitialOptions> => {
+  return {
+    preset: 'ts-jest',
+    testEnvironment: 'node',
+    verbose: true,
+  };
 };

@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { ILocation, ILocationResponse, ILocationCoordinates } from '../model/weatherModel';
+import { ILocation, ILocationCoordinates, Units, IForecastResponse } from '../model/weatherModel';
 import { config } from '../config/config';
 
 const getLocationCoord = async (location: ILocation, limit: number): Promise<ILocationCoordinates> => {
-  //   const fetch = require('node-fetch');
   let query: string = config.weather.base_url;
   query += config.weather.geo_path;
   query += `q=${location.city},${location.state},${location.country}`;
@@ -11,17 +10,32 @@ const getLocationCoord = async (location: ILocation, limit: number): Promise<ILo
   query += `&appid=${config.weather.key}`;
 
   const response: any = await axios.get(query);
-  //   console.log('Testing: ', response.data);
   const tmpJson = await response.data;
   const { lat, lon } = tmpJson[0];
-
-  //   console.log('Testing - tmpJson', tmpJson);
-  //   const tmpJson2 = tmpJson[0];
-  //   console.log('Testing - tmpJson2: ', tmpJson2);
 
   const ret = { lat: lat, lon: lon };
 
   return ret;
 };
 
-export { getLocationCoord };
+const getForecast = async (location: ILocationCoordinates, unit: string = 'standard', lang: string = 'en'): Promise<IForecastResponse> => {
+  // console.log('location object: ', location);
+  // console.log('input unit & lang: ', unit + ' : ' + lang);
+
+  let query: string = config.weather.base_url;
+  query += config.weather.forecast_path;
+  query += `lat=${location.lat}&lon=${location.lon}`;
+  query += `&units={unit}&lang=${lang}`;
+  query += `&appid=${config.weather.key}`;
+
+  // console.log('getForecast - query', query);
+
+  const response = await axios.get(query);
+  const tmpJson = await response.data;
+
+  return tmpJson;
+
+  // Promise<IForecastResponse>
+};
+
+export { getLocationCoord, getForecast };
